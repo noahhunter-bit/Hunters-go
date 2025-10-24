@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Past Trips | HuntersGo Missions</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* -- font imports */
+    @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Source+Sans+Pro:wght@400;600&display=swap');
+
+    /* -- color palette */
+    :root {
+      --bg: #f7f1e3;
+      --text: #2f3e2f;
+      --accent: #c89a2f;
+      --terracotta: #a65a3e;
+      --olive: #4c5b47;
+      --cream: #fdfaf3;
+      --shadow: rgba(46, 61, 50, 0.1);
+    }
+    [data-theme="dark"] {
+      --bg: #1a1a18;
+      --text: #f3f1ec;
+      --accent: #d4ac2e;
+      --terracotta: #b86a4c;
+      --olive: #9db59a;
+      --cream: #22211f;
+      --shadow: rgba(0, 0, 0, 0.5);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Source Sans Pro', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      transition: background-color 0.4s, color 0.4s;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background: var(--cream);
+      box-shadow: 0 2px 6px var(--shadow);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.6rem 2rem;
+      z-index: 10;
+    }
+    .logo { display: flex; align-items: center; gap: 0.5rem; }
+    .logo img { width: 38px; height: 38px; }
+    .title { font-family: 'Merriweather', serif; font-weight: 700; color: var(--olive); font-size: 1.25rem; }
+    nav ul { list-style: none; display: flex; gap: 1.5rem; margin: 0; padding: 0; }
+    nav a { text-decoration: none; color: var(--olive); font-weight: 600; transition: color 0.3s; }
+    nav a:hover { color: var(--accent); }
+    #theme-toggle { border: none; background: transparent; cursor: pointer; font-size: 1.3rem; color: var(--olive); }
+
+    /* -- Map section */
+    .map-container {
+      position: relative;
+      width: 100%;
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    .map-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+      box-shadow: 0 3px 10px var(--shadow);
+    }
+    .marker {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background-color: var(--terracotta);
+      border: 2px solid var(--accent);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+      transition: transform 0.3s, background-color 0.3s;
+    }
+    .marker:hover {
+      transform: translate(-50%, -50%) scale(1.3);
+      background-color: var(--accent);
+    }
+
+    /* -- Title above map */
+    .section-title {
+      text-align: center;
+      font-family: 'Merriweather', serif;
+      color: var(--olive);
+      font-size: 2rem;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* -- Trips grid */
+    .trips {
+      max-width: 1100px;
+      margin: 2rem auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      padding: 0 1rem 3rem;
+    }
+    .card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px var(--shadow);
+      background-color: var(--cream);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 6px 15px var(--shadow);
+    }
+    .card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: transform 0.4s ease, filter 0.4s ease;
+    }
+    .card:hover img {
+      transform: scale(1.05);
+      filter: brightness(0.75);
+    }
+    .card h3 {
+      font-family: 'Merriweather', serif;
+      text-align: center;
+      padding: 1rem 1rem 0.5rem;
+      color: var(--olive);
+      margin: 0;
+    }
+    .card .summary {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      text-align: center;
+      font-size: 0.95rem;
+      padding: 0.75rem;
+      opacity: 0;
+      transform: translateY(100%);
+      transition: all 0.3s ease;
+    }
+    .card:hover .summary {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .card a { text-decoration: none; color: inherit; display: block; }
+
+    footer {
+      text-align: center;
+      background-color: var(--cream);
+      color: var(--olive);
+      padding: 1.5rem 0;
+      border-top: 2px solid var(--accent);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="assets/emblem.png" alt="HuntersGo Emblem">
+      <span class="title">HuntersGo</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="past_trips.html">Past Trips</a></li>
+        <li><a href="current_mission.html">Current Mission</a></li>
+        <li><a href="support.html">Support</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+    </nav>
+    <button id="theme-toggle">🌓</button>
+  </header>
+
+  <div class="map-container">
+    <div class="section-title">Where God Has Taken Us</div>
+    <!-- Insert your world map SVG here -->
+    <img src="assets/world-map.svg" alt="World Map" class="map-svg">
+    <!-- Markers (Placeholders; JavaScript will position these) -->
+    <div class="marker" data-target="#blog-philippines" style="top: 40%; left: 75%;"></div>
+    <div class="marker" data-target="#blog-israel" style="top: 35%; left: 60%;"></div>
+    <div class="marker" data-target="#blog-greece-turkey" style="top: 38%; left: 65%;"></div>
+    <div class="marker" data-target="#blog-lasvegas" style="top: 45%; left: 20%;"></div>
+    <div class="marker" data-target="#blog-ag-hanna" style="top: 42%; left: 22%;"></div>
+    <div class="marker" data-target="#blog-ag-noah" style="top: 41%; left: 23%;"></div>
+    <div class="marker" data-target="#blog-kenya" style="top: 55%; left: 60%;"></div>
+    <div class="marker" data-target="#blog-estonia" style="top: 33%; left: 68%;"></div>
+  </div>
+
+  <section class="trips">
+    <!-- Philippines & Thailand -->
+    <div class="card">
+      <a href="#blog-philippines">
+        <img src="https://images.squarespace-cdn.com/content/v1/5c8433b57a1fbd79ddc74452/1556703122703-2SIVOAKPS1B219CGZA6N/55536434_2649993458376696_9047445632335216640_o.jpg" alt="Philippines Mission">
+        <h3>Philippines & Thailand (2023–24)</h3>
+        <div class="summary">Serving children and building playgrounds with mission partners.</div>
+      </a>
+    </div>
+    <!-- Israel -->
+    <div class="card">
+      <a href="#blog-israel">
+        <img src="https://www.chls.org/wp-content/uploads/2021/03/CHLS-hero.jpg" alt="Israel Mission">
+        <h3>Israel (2023)</h3>
+        <div class="summary">Exploring the Holy Land’s history and culture through missions study.</div>
+      </a>
+    </div>
+    <!-- Greece & Turkey -->
+    <div class="card">
+      <a href="#blog-greece-turkey">
+        <img src="https://www.baptistpress.com/wp-content/uploads/images/364ef963-4d6a-43b1-a74a-5a4248cf84cb-Ephesus.jpg" alt="Greece & Turkey Mission">
+        <h3>Greece & Turkey (2024)</h3>
+        <div class="summary">Walking the footsteps of the early church and teaching gospel truth.</div>
+      </a>
+    </div>
+    <!-- Las Vegas -->
+    <div class="card">
+      <a href="#blog-lasvegas">
+        <img src="https://operationforfreedom.org/wp-content/uploads/2024/01/92616AFD-9AB3-49CF-BCD9-868CD509A9D2-1024x768.jpg" alt="Las Vegas Mission">
+        <h3>Las Vegas (2024)</h3>
+        <div class="summary">Partnering with Operation for Freedom to serve those impacted by exploitation.</div>
+      </a>
+    </div>
+    <!-- AG Camps Hanna -->
+    <div class="card">
+      <a href="#blog-ag-hanna">
+        <img src="https://cdn.forumcomm.com/dims4/default/c89ed8b/2147483647/strip/true/crop/6240x4160+0+0/resize/1599x1066!/quality/90/?url=https://forum-communications-production-web.s3.us-west-2.amazonaws.com/brightspot/b5/4e/42ed92064884b6b9baf9f6dd1c32/img-5386.JPG" alt="AG Camps Hanna">
+        <h3>Nebraska, Montana & Colorado (2024)</h3>
+        <div class="summary">Ministering at youth camps and bringing joy and discipleship.</div>
+      </a>
+    </div>
+    <!-- AG Camps Noah -->
+    <div class="card">
+      <a href="#blog-ag-noah">
+        <img src="https://www.vvaglc.org/uploads/1/2/3/8/123851552/published/2025-youth-camp.png?1745243881=" alt="AG Camps Noah">
+        <h3>South Dakota, Wyoming & North Dakota (2024)</h3>
+        <div class="summary">Serving at regional camps and advancing God’s kingdom with teens.</div>
+      </a>
+    </div>
+    <!-- Kenya -->
+    <div class="card">
+      <a href="#blog-kenya">
+        <img src="https://www.goministriesinc.com/uploads/1/6/6/5/16654640/img-3762_orig.jpg" alt="Kenya Mission">
+        <h3>Kenya (2025)</h3>
+        <div class="summary">School ministry reaching over 7,000 children with the gospel.</div>
+      </a>
+    </div>
+    <!-- Estonia -->
+    <div class="card">
+      <a href="#blog-estonia">
+        <img src="https://news.ag.org/-/media/PENews/Images/2025-Article-Images/1400/Coffee-1400.jpg" alt="Estonia Mission">
+        <h3>Estonia (2025)</h3>
+        <div class="summary">Coffee evangelism with Colab, building community through faith.</div>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Noah & Hanna Hunter | HuntersGo Missions</p>
+    <p><a href="support.html">Support our work</a></p>
+  </footer>
+
+  <script>
+    // Theme toggle
+    const toggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    const saved = localStorage.getItem('theme');
+    if(saved) html.setAttribute('data-theme', saved);
+    toggle.addEventListener('click', () => {
+      const theme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+    });
+
+    // Marker click linking
+    document.querySelectorAll('.marker').forEach(marker => {
+      marker.addEventListener('click', () => {
+        const target = marker.getAttribute('data-target');
+        if(target) {
+          window.location.href = target;
+        }
+      });
+    });
+  </script>
+</body>
+</html>
