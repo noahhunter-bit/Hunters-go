@@ -1,0 +1,1 @@
+// App code would be placed here (from hunters-go-site React file)
