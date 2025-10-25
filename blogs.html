@@ -9,7 +9,7 @@
     @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Source+Sans+Pro:wght@300;400;600&display=swap');
     :root{--bg:#f7f1e3;--cream:#fdfaf3;--olive:#4c5b47;--accent:#c89a2f;--muted:#6e655b;--shadow:rgba(50,40,30,0.12);--panel:rgba(255,255,250,0.9)}
     [data-theme="dark"]{--bg:#181713;--cream:#211f1c;--olive:#c7d0b6;--accent:#d4ac2e;--muted:#9b9286;--panel:rgba(34,32,29,0.85)}
-    html,body{margin:0;background:var(--bg);font-family:"Source Sans Pro",sans-serif;color:var(--olive)}
+    html,body{margin:0;background:var(--bg);color: var(--text);transition: background 0.4s ease,color 0.4s ease;font-family:"Source Sans Pro",sans-serif;color:var(--olive)}
     .container{max-width:1100px;margin:0rem auto;padding:0 0rem}
     header{display:flex;align-items:center;justify-content:space-between;background:var(--cream);padding:.6rem 1.2rem;border-radius:0;box-shadow:0 2px 8px var(--shadow)}
     .logo{display:flex;align-items:center;gap:.6rem}.logo img{width:44px}
@@ -92,6 +92,7 @@
     <header>
       <div class="logo"><img src="assets/emblem.png" alt=""><div style="font-family:'Merriweather',serif;color:var(--olive);font-weight:700">HuntersGo</div></div>
       <nav><ul><li><a href="index.html">Home</a></li><li><a href="past_trips.html">Past Trips</a></li><li><a href="current_mission.html">Current Mission</a></li><li><a href="support.html">Support</a></li></ul></nav>
+      <button id="theme-toggle">🌓</button>
     </header>
 
     <main>
@@ -181,6 +182,18 @@
 
     // initial load
     loadAndRender('missions');
+  </script>
+  <script>
+    const toggle = document.getElementById('theme-toggle');
+    const currentTheme = localStorage.getItem('theme');
+    if (currentTheme) document.documentElement.setAttribute('data-theme', currentTheme);
+
+    toggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
   </script>
 </body>
 </html>
