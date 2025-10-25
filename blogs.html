@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HuntersGo | Blog</title>
+  <style>
+    /* ======= COLOR THEMES ======= */
+    :root {
+      --bg: #faf8f3;
+      --cream: #f5efe1;
+      --olive: #3e4a3c;
+      --accent: #c89a2f;
+      --text: #2a2a2a;
+      --shadow: rgba(0,0,0,0.1);
+    }
+    [data-theme="dark"] {
+      --bg: #2b2b29;
+      --cream: #3b3a35;
+      --olive: #d9d2c2;
+      --accent: #a67c52;
+      --text: #f6f3ea;
+      --shadow: rgba(0,0,0,0.45);
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Source Sans Pro", system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial;
+      transition: background 0.4s ease, color 0.4s ease;
+    }
+
+    /* ======= HEADER ======= */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      background: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .6rem 1.4rem;
+      margin: 0;
+      border-radius: 0;
+      box-shadow: 0 2px 8px var(--shadow);
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .logo img {
+      height: 42px;
+    }
+    .title {
+      font-family: "Merriweather", serif;
+      font-size: 1.3rem;
+      color: var(--olive);
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      margin: 0;
+      padding: 0;
+    }
+    nav a {
+      text-decoration: none;
+      color: var(--olive);
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    nav a:hover, nav a.active {
+      color: var(--accent);
+    }
+    #theme-toggle {
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+      color: var(--olive);
+    }
+
+    /* ======= CONTAINER ======= */
+    .container {
+      max-width: 1000px;
+      margin: 1.2rem auto;
+      padding: 0 1rem;
+    }
+    .container > header {margin-top: 0;}
+
+    /* ======= BLOG TABS ======= */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .tab {
+      background: var(--cream);
+      border: 1px solid var(--shadow);
+      border-radius: 6px;
+      padding: .5rem 1rem;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--olive);
+      transition: all .2s ease;
+    }
+    .tab:hover { background: var(--accent); color: var(--cream); }
+    .tab.active { background: var(--olive); color: var(--cream); }
+
+    /* ======= BLOG FEED ======= */
+    .grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .card {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      background: var(--cream);
+      border-radius: 10px;
+      box-shadow: 0 6px 18px var(--shadow);
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 22px var(--shadow);
+    }
+    .card img {
+      width: 40%;
+      object-fit: cover;
+    }
+    .card-body {
+      flex: 1;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card h3 { margin: 0 0 .5rem 0; color: var(--olive); }
+    .meta {
+      font-size: .85rem;
+      color: var(--accent);
+      margin-bottom: .5rem;
+    }
+    .card p {
+      flex: 1;
+      line-height: 1.5;
+    }
+    .readmore {
+      align-self: flex-start;
+      text-decoration: none;
+      color: var(--accent);
+      font-weight: 600;
+      transition: color .2s;
+    }
+    .readmore:hover { color: var(--olive); }
+
+    @media(max-width:780px) {
+      .card { flex-direction: column; }
+      .card img { width: 100%; height: 200px; }
+    }
+
+    /* ======= FOOTER ======= */
+    footer {
+      text-align: center;
+      background: var(--olive);
+      color: var(--cream);
+      padding: 1.5rem 0;
+      margin-top: 2rem;
+      font-size: .95rem;
+    }
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="logo">
+      <img src="assets/emblem.png" alt="HuntersGo Emblem">
+      <span class="title">HuntersGo</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="past_trips.html">Past Trips</a></li>
+        <li><a href="current_mission.html">Current Mission</a></li>
+        <li><a href="support.html">Support</a></li>
+        <li><a href="blog.html" class="active">Blog</a></li>
+      </ul>
+    </nav>
+    <button id="theme-toggle">🌓</button>
+  </header>
+
+  <!-- ===== CONTENT ===== -->
+  <div class="container">
+    <h1 style="text-align:center;font-family:'Merriweather',serif;color:var(--olive);">Field Notes & Reflections</h1>
+    <div class="tabs">
+      <div class="tab active" data-category="missions">Missions</div>
+      <div class="tab" data-category="fundraising">Fundraising</div>
+      <div class="tab" data-category="events">Events</div>
+      <div class="tab" data-category="archive">Archive</div>
+    </div>
+
+    <div id="blog-container" class="grid"></div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p>“Go therefore and make disciples of all nations...” — Matthew 28:19</p>
+    <p>&copy; 2025 Noah & Hanna Hunter | <a href="ht
