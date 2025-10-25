@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Blog Post — HuntersGo</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Source+Sans+Pro:wght@300;400;600&display=swap');
+    :root{--bg:#f7f1e3;--cream:#fdfaf3;--olive:#4c5b47;--muted:#6e655b;--shadow:rgba(50,40,30,0.12)}
+    [data-theme="dark"]{--bg:#181713;--cream:#211f1c;--olive:#c7d0b6;--muted:#9b9286;--shadow:rgba(0,0,0,0.6)}
+    html,body{margin:0;background:var(--bg);font-family:"Source Sans Pro",sans-serif}
+    header{display:flex;align-items:center;justify-content:space-between;padding:.6rem 1.2rem;background:var(--cream);box-shadow:0 2px 8px var(--shadow)}
+    .container{max-width:900px;margin:1.2rem auto;padding:0 1rem}
+    .post-hero{background:var(--cream);padding:1.2rem;border-radius:10px;box-shadow:0 8px 20px var(--shadow)}
+    .post-hero h1{font-family:'Merriweather',serif;color:var(--olive);margin:0}
+    .meta{color:var(--muted);margin-top:.5rem}
+    .post-content{margin-top:1rem;line-height:1.7;color:var(--muted)}
+    .back-link{display:inline-block;margin-top:1rem;color:var(--olive);text-decoration:none;font-weight:700}
+  </style>
+</head>
+<body>
+  <header>
+    <div style="display:flex;align-items:center;gap:.6rem"><img src="assets/emblem.png" alt="" style="width:44px"><div style="font-family:'Merriweather',serif;color:var(--olive);font-weight:700">HuntersGo</div></div>
+    <nav><a href="blogs.html" style="text-decoration:none;color:var(--olive);font-weight:700">All Posts</a></nav>
+  </header>
+
+  <main class="container">
+    <article id="post">
+      <div class="post-hero" id="post-hero">
+        <h1 id="post-title">Loading…</h1>
+        <div class="meta" id="post-meta"></div>
+      </div>
+
+      <div class="post-content" id="post-content"></div>
+      <a class="back-link" href="blogs.html">← Back to posts</a>
+    </article>
+  </main>
+
+  <script>
+    // helper to get query param
+    function param(name){ const url = new URL(location.href); return url.searchParams.get(name); }
+
+    async function loadPost(){
+      const id = param('id');
+      if(!id){ document.getElementById('post-title').textContent = 'Post not found'; return; }
+      const res = await fetch('data/blogs.json');
+      const posts = await res.json();
+      const p = posts.find(x=>x.id === id);
+      if(!p){ document.getElementById('post-title').textContent = 'Post not found'; return; }
+
+      document.title = p.title + ' — HuntersGo';
+      document.getElementById('post-title').textContent = p.title;
+      document.getElementById('post-meta').textContent = `${p.date} · ${p.location || ''} · ${p.author || ''}`;
+      // show header image if present
+      if(p.image){
+        const hero = document.getElementById('post-hero');
+        const img = document.createElement('img');
+        img.src = p.image;
+        img.alt = p.title;
+        img.style.width = '100%';
+        img.style.height = '320px';
+        img.style.objectFit = 'cover';
+        img.style.borderRadius = '8px';
+        img.style.marginTop = '.8rem';
+        hero.appendChild(img);
+      }
+      // content contains HTML
+      document.getElementById('post-content').innerHTML = p.content || '<p>No content.</p>';
+    }
+
+    loadPost();
+  </script>
+</body>
+</html>
