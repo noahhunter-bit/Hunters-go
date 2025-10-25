@@ -218,4 +218,59 @@
   <!-- ===== FOOTER ===== -->
   <footer>
     <p>“Go therefore and make disciples of all nations...” — Matthew 28:19</p>
-    <p>&copy; 2025 Noah & Hanna Hunter | <a href="ht
+    <p>&copy; 2025 Noah & Hanna Hunter | <a href="https://huntersgo.com">HuntersGo</a></p>
+  </footer>
+
+  <!-- ===== SCRIPT ===== -->
+  <script>
+    // THEME TOGGLE
+    const toggle = document.getElementById('theme-toggle');
+    const currentTheme = localStorage.getItem('theme');
+    if (currentTheme) document.documentElement.setAttribute('data-theme', currentTheme);
+    toggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+
+    // BLOG FETCH & DISPLAY
+    const blogContainer = document.getElementById('blog-container');
+    const tabs = document.querySelectorAll('.tab');
+
+    async function loadBlogs(category = "missions") {
+      const res = await fetch('data/blogs.json');
+      const blogs = await res.json();
+      blogContainer.innerHTML = '';
+      const now = new Date();
+
+      blogs
+        .filter(b => category === "archive" ? (new Date(b.date) < new Date(now.setMonth(now.getMonth()-6))) : b.category === category)
+        .forEach(b => {
+          const card = document.createElement('div');
+          card.className = 'card';
+          card.innerHTML = `
+            <img src="${b.image}" alt="${b.title}">
+            <div class="card-body">
+              <div class="meta">${b.author} • ${b.location} • ${b.date}</div>
+              <h3>${b.title}</h3>
+              <p>${b.content.substring(0, 180)}...</p>
+              <a href="blog_detail.html?id=${b.id}" class="readmore">Read More →</a>
+            </div>
+          `;
+          blogContainer.appendChild(card);
+        });
+    }
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        loadBlogs(tab.dataset.category);
+      });
+    });
+
+    loadBlogs();
+  </script>
+</body>
+</html>
