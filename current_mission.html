@@ -498,7 +498,7 @@
 
     // Fundraising meter (edit numbers below manually)
     const goal = 3600;
-    const raised = 405; // <-- manually edit this number only
+    const raised = 825; // <-- manually edit this number only
     const pct = Math.min(100, (raised/goal)*100);
     document.getElementById('fund-fill').style.width = pct + '%';
     document.getElementById('fund-text').textContent = `$${raised.toLocaleString()} / $${goal.toLocaleString()} (${Math.round(pct)}%)`;
