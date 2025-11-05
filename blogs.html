@@ -6,111 +6,23 @@
   <title>HuntersGo | Blog</title>
   <link rel="stylesheet" href="css/style.css">
   <style>
-    /* ======= CONTAINER ======= */
     .container {
       max-width: 1000px;
-      margin: 1.2rem auto;
+      margin: 3rem auto;
       padding: 0 1rem;
-    }
-
-    .page-title {
       text-align: center;
+    }
+
+    .under-construction {
       font-family: 'Merriweather', serif;
+      font-size: 3rem;
+      font-weight: 700;
       color: var(--olive);
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
+      padding: 5rem 0;
+      text-transform: uppercase;
+      letter-spacing: 2px;
     }
 
-    /* ======= BLOG TABS ======= */
-    .tabs {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-      flex-wrap: wrap;
-    }
-    .tab {
-      background: var(--cream);
-      border: 1px solid var(--shadow);
-      border-radius: 6px;
-      padding: .5rem 1rem;
-      cursor: pointer;
-      font-weight: 600;
-      color: var(--olive);
-      transition: all .2s ease;
-    }
-    .tab:hover { 
-      background: var(--accent); 
-      color: var(--cream); 
-    }
-    .tab.active { 
-      background: var(--olive); 
-      color: var(--cream); 
-    }
-
-    /* ======= BLOG FEED ======= */
-    .grid {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-    .card {
-      display: flex;
-      flex-direction: row;
-      align-items: stretch;
-      background: var(--cream);
-      border-radius: 10px;
-      box-shadow: 0 6px 18px var(--shadow);
-      overflow: hidden;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 22px var(--shadow);
-    }
-    .card img {
-      width: 40%;
-      object-fit: cover;
-    }
-    .card-body {
-      flex: 1;
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .card h3 { 
-      margin: 0 0 .5rem 0; 
-      color: var(--olive);
-      font-family: 'Merriweather', serif;
-    }
-    .meta {
-      font-size: .85rem;
-      color: var(--accent);
-      margin-bottom: .5rem;
-    }
-    .card p {
-      flex: 1;
-      line-height: 1.5;
-      color: var(--muted);
-    }
-    .readmore {
-      align-self: flex-start;
-      text-decoration: none;
-      color: var(--accent);
-      font-weight: 600;
-      transition: color .2s;
-    }
-    .readmore:hover { 
-      color: var(--olive); 
-    }
-
-    /* Mobile nav z-index fix */
-    .mobile-nav {
-      z-index: 50 !important;
-    }
-
-    /* Theme toggle */
     #theme-toggle {
       border: none;
       background: transparent;
@@ -118,49 +30,6 @@
       font-size: 1.3rem;
       color: var(--olive);
       padding: 0.35rem;
-    }
-
-    /* ======= MOBILE RESPONSIVE ======= */
-    @media(max-width: 780px) {
-      .card { 
-        flex-direction: column; 
-      }
-      .card img { 
-        width: 100%; 
-        height: 200px; 
-      }
-    }
-
-    @media(max-width: 767px) {
-      .page-title {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-      }
-
-      .tabs {
-        gap: 0.5rem;
-      }
-
-      .tab {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.9rem;
-      }
-
-      .card-body {
-        padding: 0.8rem;
-      }
-
-      .card h3 {
-        font-size: 1.1rem;
-      }
-
-      .meta {
-        font-size: 0.8rem;
-      }
-
-      .card p {
-        font-size: 0.95rem;
-      }
     }
   </style>
 </head>
@@ -172,7 +41,6 @@
     </div>
     
     <nav class="nav">
-      <!-- Desktop nav -->
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
@@ -181,15 +49,13 @@
         <li><a href="support.html">Support</a></li>
         <li><a href="blogs.html" class="active">Blog</a></li>
       </ul>
-      
-      <!-- Hamburger menu button (mobile only) -->
       <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">☰</button>
     </nav>
 
     <button id="theme-toggle" aria-label="Toggle theme">🌓</button>
   </header>
 
-  <!-- Mobile nav dropdown -->
+  <!-- Mobile Nav -->
   <nav class="mobile-nav" id="mobile-nav">
     <ul>
       <li><a href="index.html">Home</a></li>
@@ -202,15 +68,7 @@
   </nav>
 
   <div class="container">
-    <h1 class="page-title">Field Notes & Reflections</h1>
-    <div class="tabs">
-      <div class="tab active" data-category="missions">Missions</div>
-      <div class="tab" data-category="fundraising">Fundraising</div>
-      <div class="tab" data-category="events">Events</div>
-      <div class="tab" data-category="archive">Archive</div>
-    </div>
-
-    <div id="blog-container" class="grid"></div>
+    <div class="under-construction">Under Construction</div>
   </div>
 
   <footer>
@@ -219,7 +77,6 @@
   </footer>
 
   <script>
-    // Theme toggle
     const toggle = document.getElementById('theme-toggle');
     const html = document.documentElement;
     const saved = localStorage.getItem('theme');
@@ -230,75 +87,22 @@
       localStorage.setItem('theme', theme);
     });
 
-    // Mobile menu toggle
     const menuToggle = document.getElementById('menu-toggle');
     const mobileNav = document.getElementById('mobile-nav');
-    
-    if (menuToggle && mobileNav) {
+    if(menuToggle && mobileNav){
       menuToggle.addEventListener('click', (e) => {
         e.stopPropagation();
         mobileNav.classList.toggle('open');
       });
-
-      // Close mobile menu when clicking outside
       document.addEventListener('click', (e) => {
         if (!menuToggle.contains(e.target) && !mobileNav.contains(e.target)) {
           mobileNav.classList.remove('open');
         }
       });
-
-      // Close menu when clicking a link
       mobileNav.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          mobileNav.classList.remove('open');
-        });
+        link.addEventListener('click', () => mobileNav.classList.remove('open'));
       });
     }
-
-    // BLOG FETCH & DISPLAY
-    const blogContainer = document.getElementById('blog-container');
-    const tabs = document.querySelectorAll('.tab');
-
-    async function loadBlogs(category = "missions") {
-      const res = await fetch('data/blogs.json');
-      const blogs = await res.json();
-      blogContainer.innerHTML = '';
-      const now = new Date();
-
-      const sixMonthsAgo = new Date();
-      sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
-      
-      blogs
-        .filter(b => {
-          const postDate = new Date(b.date);
-          if (category === "archive") return postDate < sixMonthsAgo;
-          return b.category === category && postDate >= sixMonthsAgo;
-        })
-        .forEach(b => {
-          const card = document.createElement('div');
-          card.className = 'card';
-          card.innerHTML = `
-            <img src="${b.image}" alt="${b.title}">
-            <div class="card-body">
-              <div class="meta">${b.author} • ${b.location} • ${b.date}</div>
-              <h3>${b.title}</h3>
-              <p>${b.content.substring(0, 180)}...</p>
-              <a href="blog_detail.html?id=${b.id}" class="readmore">Read More →</a>
-            </div>
-          `;
-          blogContainer.appendChild(card);
-        });
-    }
-
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        loadBlogs(tab.dataset.category);
-      });
-    });
-
-    loadBlogs();
   </script>
 </body>
 </html>
