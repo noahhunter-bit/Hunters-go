@@ -101,29 +101,46 @@
         <section class="section">
             <h2>Sponsorship Tiers</h2>
             <p>Choose a monthly investment that aligns with your business or organization's heart for impact. Every level makes real ministry possible.</p>
-
+        
             <div class="tiers">
-                <div class="card">
+                <div class="card tier-card" data-tier="harvest">
                     <h3>Harvest Partner — $50/mo</h3>
                     <p>Provides Bibles, discipleship materials, and kids’ ministry supplies.</p>
                 </div>
-
-                <div class="card">
+        
+                <div class="card tier-card" data-tier="village">
                     <h3>Village Builder — $150/mo</h3>
                     <p>Covers local ministry worker stipends, translation work, and pastoral support.</p>
                 </div>
-
-                <div class="card highlight">
+        
+                <div class="card tier-card" data-tier="field">
                     <h3>Field Sustainer — $300/mo</h3>
                     <p>Funds transportation, food distribution, and on-the-ground outreach for an entire week.</p>
                 </div>
-
-                <div class="card">
+        
+                <div class="card tier-card" data-tier="catalyst">
                     <h3>Mission Catalyst — $500–$1000/mo</h3>
-                    <p>Underwrites large training events, village outreaches, and critical ministry projects.</p>
+                    <p>Underwrites training events, village outreaches, and major ministry initiatives.</p>
                 </div>
             </div>
         </section>
+        
+        <script>
+        // Tier selection logic
+        document.querySelectorAll('.tier-card').forEach(card => {
+            card.addEventListener('click', () => {
+                
+                // Remove selected class from all cards
+                document.querySelectorAll('.tier-card').forEach(c => {
+                    c.classList.remove('selected');
+                });
+        
+                // Add selected class to clicked card
+                card.classList.add('selected');
+            });
+        });
+        </script>
+
 
         <!-- Impact Section -->
         <section class="section">
