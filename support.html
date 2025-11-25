@@ -5,15 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Support | HuntersGo Missions</title>
   <style>
-    /* css/style.css
-       Shared responsive styles for HuntersGo
-       Mobile-first, with breakpoints and hamburger nav
-    */
+   /* --------------------------------------------------
+   HuntersGo • Master Stylesheet (Clean + Optimized)
+   Mobile-first • Cohesive spacing • Dark-mode ready
+    -------------------------------------------------- */
     
-    /* ====== Fonts ====== */
+    /* === Fonts === */
     @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Source+Sans+Pro:wght@300;400;600&display=swap');
     
-    :root{
+    /* === Theme Variables === */
+    :root {
       --bg:#f7f1e3;
       --cream:#fdfaf3;
       --olive:#4c5b47;
@@ -22,290 +23,193 @@
       --text:#2f3e2f;
       --muted:#6e655b;
       --shadow: rgba(46,61,50,0.10);
-      --header-height:64px;
       --max-width:1100px;
+      --header-height:64px;
     }
     
-    /* dark theme overrides */
-    [data-theme="dark"]{
+    /* Dark theme overrides */
+    [data-theme="dark"] {
       --bg:#1a1a18;
       --cream:#22211f;
       --olive:#c7d0b6;
       --accent:#d4ac2e;
       --text:#efece3;
       --muted:#9b9286;
-      --shadow: rgba(0,0,0,0.6);
+      --shadow: rgba(0,0,0,0.45);
     }
     
-    /* ====== Base ====== */
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;background:var(--bg);color:var(--text);font-family:'Source Sans Pro',sans-serif;line-height:1.6}
-    a{color:var(--olive);text-decoration:none}
-    img{max-width:100%;height:auto;display:block}
+    /* === Base === */
+    * { box-sizing: border-box; }
     
-    /* ====== Header & Nav ====== */
+    html, body {
+      margin: 0;
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Source Sans Pro', sans-serif;
+      line-height: 1.6;
+    }
+    
+    a { color: var(--olive); text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    
+    /* --------------------------------------------------
+       Header + Navigation
+    -------------------------------------------------- */
     .header {
-      position:sticky;
-      top:0;
-      z-index:40;
-      background:var(--cream);
-      box-shadow:0 2px 8px var(--shadow);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:1rem;
-      padding:0.6rem 1rem;
-      height:var(--header-height);
-    }
-    
-    .logo {display:flex;align-items:center;gap:.6rem}
-    .logo img{width:40px;height:40px}
-    .site-title{font-family:'Merriweather',serif;font-weight:700;color:var(--olive);letter-spacing:1px}
-    
-    /* nav */
-    .nav {
-      display:flex;
-      align-items:center;
-      gap:1rem;
-    }
-    .nav ul{display:flex;gap:1rem;list-style:none;margin:0;padding:0;align-items:center}
-    .nav a{font-weight:600}
-    .menu-toggle {
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      border:0;
-      background:transparent;
-      font-size:1.35rem;
-      cursor:pointer;
-      padding:.35rem;
-    }
-    
-    /* mobile nav (hidden by default) */
-    .mobile-nav {
-      display:none;
-      position: absolute;
-      right: 0;
-      top: var(--header-height);
+      position: sticky;
+      top: 0;
+      z-index: 50;
       background: var(--cream);
-      width:100%;
-      max-width:320px;
-      box-shadow:0 6px 18px var(--shadow);
-      border-left: 1px solid rgba(0,0,0,0.02);
-      padding:1rem;
+      box-shadow: 0 2px 8px var(--shadow);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .6rem 1rem;
+      height: var(--header-height);
     }
-    /* Header contact info */
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+    .logo img { width: 40px; height: 40px; }
+    .site-title {
+      font-family: 'Merriweather', serif;
+      font-weight: 700;
+      color: var(--olive);
+    }
+    
+    /* Desktop nav */
+    .nav ul {
+      display: flex;
+      gap: 1rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    
+    /* Header Contact */
     .header-contact {
       display: flex;
-      flex-direction: column; 
-      gap: 1rem;
-      font-size: 0.75rem;
-      text-align: left;
+      flex-direction: column;
+      gap: .3rem;
+      font-size: .75rem;
+    }
+    .header-contact a:hover { color: var(--accent); }
+    
+    /* Hamburger */
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
     }
     
-    .header-contact a {
-      color: var(--olive);
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.2s;
-      white-space: nowrap;
+    /* Mobile Nav (hidden by default) */
+    .mobile-nav {
+      display: none;
+      position: absolute;
+      top: var(--header-height);
+      right: 0;
+      width: 100%;
+      max-width: 320px;
+      background: var(--cream);
+      box-shadow: 0 6px 18px var(--shadow);
+      padding: 1rem;
+    }
+    .mobile-nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
     }
     
-    .header-contact a:hover {
-      color: var(--accent);
-    }
-    
-    /* Hide header contact on mobile to save space */
-    @media(max-width: 767px) {
-      .header-contact {
-        display: none;
-      }
-    }
-    
-    /* Footer contact styling */
-    footer a {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 600;
-    }
-    
-    footer a:hover {
-      color: var(--olive);
-    }
-    .mobile-nav ul{flex-direction:column;display:flex;gap:.75rem}
-    .mobile-nav a{display:block;padding:.6rem .8rem;border-radius:8px}
-    
-    /* container helper */
-    .container{max-width:var(--max-width);margin:1.2rem auto;padding:0 1rem}
-    
-    /* ====== Hero (keeps full, crops as needed) ====== */
-    .hero {
-      min-height:70vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      position:relative;
-      color:#fff;
-      text-align:center;
-      padding:3rem 1rem;
-      background-position:center;
-      background-repeat:no-repeat;
-      background-size:cover; /* important: keeps hero full and crops */
-    }
-    .hero .overlay {
-      position:absolute;inset:0;background:rgba(47,62,47,0.45);backdrop-filter:blur(1px)
-    }
-    .hero-content{position:relative;z-index:2;max-width:680px;animation:fadeIn 700ms ease}
-    
-    /* Buttons */
-    .btn {display:inline-block;padding:.75rem 1.2rem;border-radius:8px;font-weight:700}
-    .btn-primary{background:var(--accent);color:#fff}
-    .btn-outline{background:transparent;border:2px solid var(--accent);color:var(--olive)}
-    
-    /* utility grid */
-    .directory{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;padding:1rem 0}
-    .dir-item{background:var(--cream);padding:1.2rem;border-radius:10px;box-shadow:0 4px 12px var(--shadow);text-align:center}
-    
-    /* stories grid */
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
-    .card{background:var(--cream);border-radius:12px;overflow:hidden;box-shadow:0 6px 18px var(--shadow);display:flex;flex-direction:column}
-    .card .card-body{padding:1rem;flex:1;display:flex;flex-direction:column}
-    
-    /* tiles that used background images */
-    .tile {
-      position:relative;height:260px;border-radius:12px;overflow:hidden;background-size:cover;background-position:center;
-      display:flex;align-items:flex-end;
-    }
-    .tile .tile-text{padding:1rem;color:var(--cream);background:linear-gradient(180deg,transparent,rgba(0,0,0,0.5));width:100%}
-    
-    /* footer */
-    footer{background:var(--cream);color:var(--olive);text-align:center;padding:1.25rem;border-top:2px solid var(--accent);margin-top:2rem}
-    
-    /* small helpers */
-    .meta{color:var(--muted);font-size:.95rem}
-    .center{text-align:center}
-    
-    /* slideshow small */
-    .slideshow{position:relative;border-radius:10px;overflow:hidden}
-    .slide{display:none}
-    .slide.active{display:block}
-    .slideshow img{width:100%;height:auto;display:block;object-fit:cover}
-    
-    /* ====== Accessibility focus states ====== */
-    a:focus,button:focus{outline:3px solid rgba(200,154,47,0.25);outline-offset:3px}
-    
-    /* ====== Animations ====== */
-    @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-    
-    /* ====== Responsive breakpoints ====== */
-    @media(min-width:768px){
-      .menu-toggle{display:none}
-      .mobile-nav{display:none !important}
-      .desktop-only{display:block}
-      .nav ul{display:flex}
-    }
-    @media(max-width:767px){
-      .nav ul{display:none}
-      .menu-toggle{display:inline-flex}
-      .mobile-nav{display:none}
-      .mobile-nav.open{display:block}
-      .hero{min-height:56vh;padding:2.25rem 1rem}
-      header .site-title{font-size:1rem}
-      .container{margin:0.8rem auto}
-      .directory{gap:.65rem}
-      .tile{height:180px}
-    }
-    
-    /* larger desktop */
-    @media(min-width:1200px){
-      .hero{min-height:85vh}
-    }
-    /* === Hero Section === */
+    /* --------------------------------------------------
+       HERO SECTION
+    -------------------------------------------------- */
     .hero {
       text-align: center;
       padding: 2.25rem 1rem 1.25rem;
       background: linear-gradient(180deg, var(--cream), transparent);
-      display: block;
     }
     
     .hero h1 {
       font-family: 'Merriweather', serif;
       color: var(--olive);
+      margin: 0 0 .5rem;
       font-size: 2rem;
-      margin: 0 0 0.5rem 0;
     }
     
     .hero p {
-      color: var(--muted);
       max-width: 680px;
-      margin: 0.25rem auto;
-      line-height: 1.55;
+      margin: .35rem auto;
+      color: var(--muted);
     }
     
     .verse {
-      margin-top: 0.85rem;
+      margin-top: .75rem;
       font-style: italic;
       color: var(--muted);
     }
-    
     .verse small {
       display: block;
-      color: var(--olive);
+      margin-top: .25rem;
       font-family: 'Merriweather', serif;
-      margin-top: 0.25rem;
+      color: var(--olive);
     }
     
-    /* === Main Content Wrapper === */
+    /* --------------------------------------------------
+       Main Page Layout Wrapper
+    -------------------------------------------------- */
     .main-content {
       max-width: 700px;
-      margin: 0.75rem auto 2rem; /* VERY small top margin now */
+      margin: .75rem auto 2rem;
       padding: 0 1.25rem;
       display: grid;
-      gap: 1.75rem; /* Reduced spacing between cards */
+      gap: 1.5rem;
     }
     
-    /* === Giving Section === */
+    /* --------------------------------------------------
+       Giving Section
+    -------------------------------------------------- */
     .giving {
       background: var(--cream);
-      padding: 1.35rem 1.25rem;
+      padding: 1.25rem;
       border-radius: 14px;
       box-shadow: 0 6px 14px var(--shadow);
     }
     
     .giving h2 {
       font-family: 'Merriweather', serif;
-      color: var(--olive);
-      margin: 0 0 0.5rem;
+      margin: 0 0 .5rem;
       font-size: 1.35rem;
-    }
-    
-    .giving p {
-      color: var(--muted);
-      line-height: 1.55;
-      margin: 0.25rem 0;
+      color: var(--olive);
     }
     
     .give-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.9rem;
-      margin-top: 0.9rem;
+      gap: .85rem;
+      margin-top: 1rem;
     }
     
     .give-btn {
       flex: 1;
       min-width: 230px;
-      text-decoration: none;
       background: var(--bg);
-      color: var(--text);
-      padding: 0.75rem 1rem;
+      padding: .8rem 1rem;
       border-radius: 12px;
-      display: flex;
-      align-items: center;
-      gap: 0.7rem;
       border: 1px solid rgba(0,0,0,0.05);
       box-shadow: 0 4px 10px var(--shadow);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+      transition: .2s ease;
     }
     
     .give-btn:hover {
@@ -315,118 +219,82 @@
     
     .give-icon {
       width: 40px;
-      height: auto;
-      flex-shrink: 0;
-      filter: brightness(0.9) contrast(110%);
-      transition: transform 0.3s, filter 0.3s;
+      transition: .3s;
     }
+    .give-btn:hover .give-icon { transform: scale(1.05); }
     
-    [data-theme="dark"] .give-icon {
-      filter: brightness(1.15) contrast(90%);
-    }
-    
-    .give-btn:hover .give-icon {
-      transform: scale(1.06);
-      filter: brightness(1.05);
-    }
-    
-    .give-meta .name {
-      font-weight: 700;
-      color: var(--olive);
-    }
-    
-    .give-meta .sub {
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-    
-    /* === Prayer Section === */
+    /* --------------------------------------------------
+       Prayer Section
+    -------------------------------------------------- */
     .prayer {
       background: var(--cream);
       padding: 1.25rem;
       border-radius: 12px;
       box-shadow: 0 6px 14px var(--shadow);
     }
-    
     .prayer h3 {
+      margin: 0 0 .5rem;
       font-family: 'Merriweather', serif;
       color: var(--olive);
-      margin: 0 0 0.5rem;
     }
     
-    .prayer p,
-    .prayer ul {
-      color: var(--muted);
-      line-height: 1.55;
-    }
-    
-    .prayer ul {
-      padding-left: 1.15rem;
-    }
-    
-    /* === Thank You Banner === */
+    /* --------------------------------------------------
+       Thank You Section
+    -------------------------------------------------- */
     .thanks {
       background: linear-gradient(180deg, #fff6ea, #fbf3e6);
       border-left: 4px solid var(--terracotta);
       padding: 1rem 1.1rem;
       border-radius: 10px;
       box-shadow: 0 6px 16px var(--shadow);
-      color: var(--muted);
-      margin-top: 0.9rem;
     }
-    
-    [data-theme="dark"] .thanks {
-      background: linear-gradient(180deg, var(--cream), #1a1815);
-    }
-    
     .thanks strong {
       color: var(--olive);
       font-family: 'Merriweather', serif;
-      margin-bottom: 0.25rem;
+      margin-bottom: .25rem;
       display: block;
     }
     
-    /* === Animations === */
+    /* --------------------------------------------------
+       Footer
+    -------------------------------------------------- */
+    footer {
+      background: var(--cream);
+      text-align: center;
+      padding: 1.25rem;
+      border-top: 2px solid var(--accent);
+      margin-top: 2rem;
+    }
+    footer a { color: var(--accent); }
+    
+    /* --------------------------------------------------
+       Animations
+    -------------------------------------------------- */
     .fade-up {
       opacity: 0;
       transform: translateY(10px);
-      transition: 0.6s ease;
+      transition: .6s ease;
     }
-    
     .in-view {
       opacity: 1;
       transform: translateY(0);
     }
     
-    /* === Theme Toggle Button === */
-    #theme-toggle {
-      border: none;
-      background: transparent;
-      cursor: pointer;
-      font-size: 1.25rem;
-      color: var(--olive);
-      padding: 0.35rem 0.45rem;
-    }
+    /* --------------------------------------------------
+       Responsive
+    -------------------------------------------------- */
+    @media (max-width: 767px) {
+      .header-contact { display: none; }
+      .menu-toggle { display: inline-flex; }
+      .nav ul { display: none; }
+      .mobile-nav.open { display: block; }
     
-    /* === Mobile Adjustments === */
-    @media(max-width: 768px) {
-      .hero { padding: 2rem 1rem 1rem; }
       .hero h1 { font-size: 1.55rem; }
-      .hero p { font-size: 0.95rem; }
-    
-      .main-content {
-        padding: 0 1rem;
-        gap: 1.35rem;
-      }
-    
-      .give-row { gap: 0.8rem; }
-    
-      .give-btn { padding: 0.9rem 1rem; }
-    
+      .main-content { padding: 0 1rem; }
+      .give-btn { padding: 1rem; }
       .give-icon { width: 36px; }
-    
-      .prayer, .giving { padding: 1rem; }
     }
+
   </style>
 </head>
 <body>
