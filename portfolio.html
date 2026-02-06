@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ministry Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      margin: 0;
+      background: #f7f7f7;
+      color: #222;
+      line-height: 1.6;
+    }
+    header {
+      background: #2f4f4f;
+      color: #fff;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    nav {
+      background: #1f3333;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 0.75rem;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    section {
+      background: #fff;
+      margin-bottom: 2rem;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+    h2 {
+      margin-top: 0;
+      color: #2f4f4f;
+    }
+    .entry {
+      margin-bottom: 1.5rem;
+    }
+    .entry h3 {
+      margin-bottom: 0.25rem;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .tag {
+      display: inline-block;
+      background: #e0ecec;
+      color: #2f4f4f;
+      padding: 0.25rem 0.5rem;
+      margin-right: 0.5rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Your Name</h1>
+  <p>Ministry Portfolio | Calling • Experience • Faithfulness</p>
+</header>
+
+<nav>
+  <a href="#calling">Calling</a>
+  <a href="#experience">Experience</a>
+  <a href="#education">Education</a>
+  <a href="#testimonies">Testimonies</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<main>
+
+  <section id="calling">
+    <h2>Calling & Vision</h2>
+    <p>
+      Describe your sense of calling, theological convictions, and long-term vision for ministry.
+      This is often the most important section for sending churches, mission agencies, and mentors.
+    </p>
+  </section>
+
+  <section id="experience">
+    <h2>Ministry Experience</h2>
+
+    <div class="entry">
+      <h3>Short-Term Mission Trip – Location</h3>
+      <p><strong>Role:</strong> Teaching / Evangelism / Support</p>
+      <p><strong>Dates:</strong> Month Year – Month Year</p>
+      <p>
+        Briefly describe what you did, who you served, and what you learned.
+      </p>
+      <span class="tag">Cross-Cultural</span>
+      <span class="tag">Discipleship</span>
+    </div>
+
+    <div class="entry">
+      <h3>Church Ministry – Church Name</h3>
+      <p><strong>Role:</strong> Youth Leader / Volunteer / Intern</p>
+      <p>
+        Describe responsibilities, leadership growth, and spiritual fruit.
+      </p>
+    </div>
+
+  </section>
+
+  <section id="education">
+    <h2>Education & Training</h2>
+
+    <div class="entry">
+      <h3>B.A. in Global Missions</h3>
+      <p><strong>Institution:</strong> College or Seminary Name</p>
+      <p>
+        Relevant coursework, internships, or formation experiences.
+      </p>
+    </div>
+
+    <div class="entry">
+      <h3>Certifications & Workshops</h3>
+      <ul>
+        <li>Cross-Cultural Communication Training</li>
+        <li>Trauma-Informed Ministry</li>
+        <li>Language or TESOL Training</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <section id="testimonies">
+    <h2>Testimonies & References</h2>
+    <blockquote>
+      “Short testimony or endorsement from a pastor, mentor, or teammate.”
+    </blockquote>
+    <p>
+      References available upon request.
+    </p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email: yourname@email.com</p>
+    <p>Phone: (optional)</p>
+    <p>
+      You may also link to a sending organization profile or PDF resume.
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  <p>© <span id="year"></span> Your Name • Ministry Portfolio</p>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
